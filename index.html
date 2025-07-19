@@ -5,40 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Júlia 💙</title>
   <style>
-    body { background: #12132b; color: #e0e0f8; font-family: sans-serif; text-align: center; padding: 10px; }
-    .frases { margin: 20px 0; font-size: 1.2em; }
-    .imagens img { max-width: 90%; border-radius: 8px; margin: 10px 0; }
-    .contagem { font-size: 2em; margin: 20px 0; }
-    iframe { border: none; width: 100%; max-width: 400px; height: 225px; margin: 20px 0; }
+    body {
+      background: #12132b;
+      color: #e0e0f8;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .frases {
+      margin: 20px 0;
+      font-size: 1.2em;
+    }
+
+    .imagens img {
+      max-width: 60%;
+      height: auto;
+      border-radius: 8px;
+      margin: 10px 0;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .contagem {
+      font-size: 2em;
+      margin: 20px 0;
+    }
+
+    .musica {
+      margin-top: 30px;
+    }
+
+    #playButton {
+      background-color: #87cefa;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #12132b;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+
+    #playButton:hover {
+      background-color: #add8e6;
+    }
   </style>
 </head>
 <body>
   <h1>Para você, Júlia 💙</h1>
-  <iframe src="https://www.youtube.com/embed/kvazBqAlx58?autoplay=0&loop=1&playlist=kvazBqAlx58" allow="autoplay"></iframe>
+
+  <div class="musica">
+    <button id="playButton">Clique para começar a música 🎵</button>
+    <div id="playerContainer" style="display:none; margin-top: 20px;">
+      <iframe id="ytplayer" src="" allow="autoplay" allowfullscreen width="400" height="225" frameborder="0"></iframe>
+    </div>
+  </div>
+
   <div class="imagens">
     <img src="gato1.png" alt="1" />
     <img src="gato2.png" alt="2" />
   </div>
+
   <div class="frases">
     <p>Eu te amo, Júlia.</p>
     <p>Mesmo longe, penso em ti todo dia.</p>
     <p>Te espero no azul do tempo.</p>
   </div>
+
   <div class="contagem">
     <p>Faltam <span id="dias"></span> dias para estarmos juntos!</p>
   </div>
+
   <script>
+    // Contador
     const hoje = new Date();
     const alvo = new Date();
     alvo.setDate(hoje.getDate() + 57);
+
     function atualizarContagem() {
       const agora = new Date();
       const diff = alvo - agora;
-      const dias = Math.ceil(diff / (1000*60*60*24));
+      const dias = Math.ceil(diff / (1000 * 60 * 60 * 24));
       document.getElementById('dias').textContent = dias;
     }
+
     atualizarContagem();
-    setInterval(atualizarContagem, 1000*60*60);
+    setInterval(atualizarContagem, 1000 * 60 * 60);
+
+    // Música com autoplay ao clicar
+    const playButton = document.getElementById("playButton");
+    const playerContainer = document.getElementById("playerContainer");
+    const ytplayer = document.getElementById("ytplayer");
+
+    playButton.addEventListener("click", () => {
+      ytplayer.src = "https://www.youtube.com/embed/kvazBqAlx58?autoplay=1&loop=1&playlist=kvazBqAlx58";
+      playerContainer.style.display = "block";
+      playButton.style.display = "none";
+    });
   </script>
 </body>
 </html>
