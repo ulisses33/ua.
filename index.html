@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Júlia 💙</title>
+  <style>
+    body { background: #12132b; color: #e0e0f8; font-family: sans-serif; text-align: center; padding: 10px; }
+    .frases { margin: 20px 0; font-size: 1.2em; }
+    .imagens img { max-width: 90%; border-radius: 8px; margin: 10px 0; }
+    .contagem { font-size: 2em; margin: 20px 0; }
+    iframe { border: none; width: 100%; max-width: 400px; height: 225px; margin: 20px 0; }
+  </style>
+</head>
+<body>
+  <h1>Para você, Júlia 💙</h1>
+  <iframe src="https://www.youtube.com/embed/kvazBqAlx58?autoplay=0&loop=1&playlist=kvazBqAlx58" allow="autoplay"></iframe>
+  <div class="imagens">
+    <img src="https://placekitten.com/400/300" alt="Gato fofo">
+    <img src="https://picsum.photos/id/1005/400/300" alt="Vampira estilo gótico">
+  </div>
+  <div class="frases">
+    <p>Eu te amo, Júlia.</p>
+    <p>Mesmo longe, penso em ti todo dia.</p>
+    <p>Te espero no azul do tempo.</p>
+  </div>
+  <div class="contagem">
+    <p>Faltam <span id="dias"></span> dias para estarmos juntos!</p>
+  </div>
+  <script>
+    const hoje = new Date();
+    const alvo = new Date();
+    alvo.setDate(hoje.getDate() + 57);
+    function atualizarContagem() {
+      const agora = new Date();
+      const diff = alvo - agora;
+      const dias = Math.ceil(diff / (1000*60*60*24));
+      document.getElementById('dias').textContent = dias;
+    }
+    atualizarContagem();
+    setInterval(atualizarContagem, 1000*60*60);
+  </script>
+</body>
+</html>
