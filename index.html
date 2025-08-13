@@ -90,25 +90,31 @@
   </div>
 
   <script>
-      // Contagem
-    const hoje = new Date();
+    // Contagem
     const alvo = new Date("2025-08-18T00:00:00");
-  
+
     function atualizarContagem() {
       const agora = new Date();
       const diff = alvo - agora;
       const dias = Math.ceil(diff / (1000 * 60 * 60 * 24));
-      document.getElementById('dias').textContent = dias >= 0 ? dias : 0;
+
+      if (dias > 0) {
+        document.getElementById('dias').textContent = dias;
+      } else if (dias === 0) {
+        document.querySelector('.contagem').innerHTML = "💖 O grande dia chegou! 💖";
+      } else {
+        document.querySelector('.contagem').innerHTML = "O dia já passou, mas ainda penso em você 💕";
+      }
     }
-  
+
     atualizarContagem();
     setInterval(atualizarContagem, 1000 * 60 * 60); // Atualiza a cada hora
-  
+
     // Música autoplay após clique
     const playButton = document.getElementById("playButton");
     const playerContainer = document.getElementById("playerContainer");
     const ytplayer = document.getElementById("ytplayer");
-  
+
     playButton.addEventListener("click", () => {
       ytplayer.src = "https://www.youtube.com/embed/kvazBqAlx58?autoplay=1&loop=1&playlist=kvazBqAlx58";
       playerContainer.style.display = "block";
